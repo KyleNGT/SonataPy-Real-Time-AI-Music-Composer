@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SonataPy</title>
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header class="d-flex justify-content-between align-items-center px-4 py-3">
+        <div class="d-flex align-items-center">
+            <img src="assets/logo.png" alt="SonataPy Logo" class="me-3" style="height: 45px;">
+        </div>
+        </header>
+
+<main class="main-layout">
+            <aside class="sidebar" id="sidebar">
+                
+                <div class="sidebar-header d-flex justify-content-between align-items-center">
+                    <h2 class="mb-0">Music Controls</h2>
+                    <button class="btn btn-sm btn-outline-secondary toggle-sidebar" id="toggleSidebar">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                </div>
+
+                <div class="control-container">
+
+                    <div class="control-group">
+                        <span class="control-title">Density</span>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="densityRadio" id="lowDensity" value="low">
+                                <label for="lowDensity">Low</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="densityRadio" id="autoDensity" value="auto" checked>
+                                <label for="autoDensity">Auto</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="densityRadio" id="highDensity" value="high">
+                                <label for="highDensity">High</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <span class="control-title">Brightness</span>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="brightnessRadio" id="lowBrightness" value="low">
+                                <label for="lowBrightness">Low</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="brightnessRadio" id="autoBrightness" value="auto" checked>
+                                <label for="autoBrightness">Auto</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="brightnessRadio" id="highBrightness" value="high">
+                                <label for="highBrightness">High</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <span class="control-title">Instrumentation</span>
+                        <div class="toggle-stack">
+                            <div class="toggle-check">
+                                <input class="toggle-input" type="checkbox" name="drumsCheckbox" id="drumsCheckbox">
+                                <label class="toggle-label" for="drumsCheckbox">
+                                    <span>Mute Drums</span>
+                                    <span class="toggle-indicator" aria-hidden="true"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-check">
+                                <input class="toggle-input" type="checkbox" name="bassCheckbox" id="bassCheckbox">
+                                <label class="toggle-label" for="bassCheckbox">
+                                    <span>Mute Bass</span>
+                                    <span class="toggle-indicator" aria-hidden="true"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-title" for="scaleSelect">Scale</label>
+                        <select class="form-select" id="scaleSelect">
+                            <option value="SCALE_UNSPECIFIED" selected>Auto</option>
+                            <option value="C_MAJOR_A_MINOR">C major / A minor</option>
+                            <option value="D_FLAT_MAJOR_B_FLAT_MINOR">D♭ major / B♭ minor</option>
+                            <option value="D_MAJOR_B_MINOR">D major / B minor</option>
+                            <option value="E_FLAT_MAJOR_C_MINOR">E♭ major / C minor</option>
+                            <option value="E_MAJOR_D_FLAT_MINOR">E major / C♯/D♭ minor</option>
+                            <option value="F_MAJOR_D_MINOR">F major / D minor</option>
+                            <option value="G_FLAT_MAJOR_E_FLAT_MINOR">G♭ major / E♭ minor</option>
+                            <option value="G_MAJOR_E_MINOR">G major / E minor</option>
+                            <option value="A_FLAT_MAJOR_F_MINOR">A♭ major / F minor</option>
+                            <option value="A_MAJOR_G_FLAT_MINOR">A major / F♯/G♭ minor</option>
+                            <option value="B_FLAT_MAJOR_G_MINOR">B♭ major / G minor</option>
+                            <option value="B_MAJOR_A_FLAT_MINOR">B major / G♯/A♭ minor</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="bpmRange" class="form-label d-flex justify-content-between align-items-center">
+                            <span>BPM</span>
+                            <span id="bpmValue">120</span>
+                        </label>
+                        <input type="range" class="form-range custom-slider control-slider" min="60" max="200" step="1" id="bpmRange" value="120" disabled>
+                        <div class="toggle-check mt-2">
+                            <input class="toggle-input" type="checkbox" id="autoBpmCheckbox" checked>
+                            <label class="toggle-label" for="autoBpmCheckbox">
+                                <span>Auto</span>
+                                <span class="toggle-indicator" aria-hidden="true"></span>
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <section class="panel session-log">
+                        <div class="panel-header d-flex align-items-center justify-content-between mb-2">
+                            <h3 class="panel-title mb-0">Session Log</h3>
+                            <span class="panel-subtitle">Live updates</span>
+                        </div>
+                        <div id="log" class="log" aria-live="polite"></div>
+                    </section>
+                </div>
+            </aside>
+
+            <div class="content-area">
+                <div class="slider-container">
+                    <div class="slider-scroll">
+                        <div id="sliders-list" class="slider-list">
+                            <div class="slider-row d-flex flex-wrap align-items-center justify-content-between gap-3">
+                                <div class="d-flex align-items-center gap-2">
+                                    <button class="btn btn-danger btn-sm remove-slider-btn" type="button">✖</button>
+                                    <label for="slider0" class="form-label mb-0">Piano</label>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <input type="range" class="form-range custom-slider" id="slider0" min="0.1" max="3" step="0.1" value="1.0">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prompt-section">
+                            <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-3">
+                                <input type="text" class="form-control" id="promptInput" placeholder="Add a prompt...">
+                                <div class="d-flex flex-md-row gap-2 justify-content-md-end">
+                                    <button id="clearBtn" class="btn btn-danger">Clear all</button>
+                                    <button id="addSliderBtn" class="btn btn-success">+</button>
+                                </div>
+                            </div>
+
+                            <div id="generated-code-container" class="mt-3 text-start">
+                                <label for="generatedCode" class="form-label generated-output-label">Generated Interpreter Code</label>
+                                <pre id="generatedCode" class="code-output"></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="playback-controls text-white">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button id="playBtn" class="btn btn-success me-2 rounded-pill">
+                                <i class="fa fa-play"></i>
+                            </button>
+                            <button id="stopBtn" class="btn btn-danger me-3 rounded-pill">
+                                <i class="fa fa-stop"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <script type="module" src="script.js"></script>
+    </body>
+</html>

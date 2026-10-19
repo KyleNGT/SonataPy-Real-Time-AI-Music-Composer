@@ -1,0 +1,135 @@
+:root {
+     --primary: #06D6A0;
+     --background: #6C63FF;
+     --text-light: #FFFFFF;
+}
+ body {
+     background-color: #000000;
+     margin: 0;
+     padding: 0;
+     color: var(--text-light);
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     height: 100vh;
+     overflow: hidden;
+     transition: background-color 2.5s ease-in-out;
+}
+ .splash-container {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     height: 100vh;
+     text-align: center;
+     position: relative;
+}
+ .logo {
+     width: 300px;
+     height: auto;
+     max-width: 80%;
+     animation: slideInFromLeft 1.5s ease-out forwards, float 3s ease-in-out 1.5s infinite;
+     opacity: 0;
+     transform: translateX(-100vw);
+}
+ .tagline {
+     font-size: 1.2rem;
+     margin-top: 2rem;
+     opacity: 0;
+     animation: fadeInUp 1s ease-out 1s forwards;
+     max-width: 500px;
+     line-height: 1.6;
+     color: rgba(255, 255, 255, 0.8);
+}
+ .loading-bar {
+     width: 200px;
+     height: 4px;
+     background: rgba(255, 255, 255, 0.2);
+     border-radius: 2px;
+     overflow: hidden;
+     margin-top: 3rem;
+     opacity: 0;
+     animation: fadeIn 0.5s ease-out 1.5s forwards;
+}
+ .loading-progress {
+     width: 100%;
+     height: 100%;
+     background: var(--primary);
+     border-radius: 2px;
+     animation: loading 2s ease-in-out 1.5s forwards;
+     transform-origin: left;
+     transform: scaleX(0);
+}
+ .welcome-text {
+     font-size: 1rem;
+     opacity: 0;
+     margin-top: 1rem;
+     animation: fadeIn 0.5s ease-out 2s forwards;
+     color: rgba(255, 255, 255, 0.7);
+}
+
+/* Animations */
+ @keyframes slideInFromLeft {
+     0% {
+         transform: translateX(-100vw);
+         opacity: 0;
+    }
+     80% {
+         transform: translateX(20px);
+         opacity: 1;
+    }
+     100% {
+         transform: translateX(0);
+         opacity: 1;
+    }
+}
+ @keyframes float {
+     0%, 100% {
+         transform: translateY(0px) translateX(0);
+    }
+     50% {
+         transform: translateY(-10px) translateX(0);
+    }
+}
+ @keyframes fadeInUp {
+     from {
+         opacity: 0;
+         transform: translateY(30px);
+    }
+     to {
+         opacity: 1;
+         transform: translateY(0);
+    }
+}
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+    }
+     to {
+         opacity: 1;
+    }
+}
+ @keyframes loading {
+     0% {
+         transform: scaleX(0);
+    }
+     100% {
+         transform: scaleX(1);
+    }
+}
+ @keyframes backgroundTransition {
+     0% {
+         background-color: #000000;
+    }
+     100% {
+         background-color: var(--background);
+    }
+}
+/* Background transition effect */
+ .background-transition {
+     animation: backgroundTransition 2.5s ease-in-out forwards;
+}
+
+/* Add a subtle glow effect to the logo */
+ .logo-glow {
+     filter: drop-shadow(0 0 20px rgba(108, 99, 255, 0.5));
+}
+
